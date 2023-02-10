@@ -42,7 +42,29 @@ $.ajax(settings).done(function (response) {
     var originator = $("<h5>");
     originator.text(response.originator.name);
     $("#root").append(originator);
+});
 
+const number = {
+	"async": true,
+	"crossDomain": true,
+	"url": "https://numbersapi.p.rapidapi.com/2/09/date?fragment=true&json=true",
+	"method": "GET",
+	"headers": {
+		"X-RapidAPI-Key": "5ef59f08c8mshb5c3ec90e02c6ffp14d29fjsn60631893c376",
+		"X-RapidAPI-Host": "numbersapi.p.rapidapi.com"
+	}
+};
+
+$.ajax(number).done(function (response) {
+	console.log(response);
+
+    var numberFact = $("<p>");
+    numberFact.text(response.text);
+    $("#root").append(numberFact);
+
+    var factYear = $("<h5>");
+    factYear.text(response.year);
+    $("#root").append(factYear);
 });
     </script>
 
