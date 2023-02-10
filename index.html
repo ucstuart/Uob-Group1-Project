@@ -1,161 +1,118 @@
-<!DOCTYPE html>
-<html lang="en-gb">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <link
-      rel="stylesheet"
-      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
-    /> <!-- Bootstrap-->
-    <link
-      rel="stylesheet"
-      href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
-      integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
-      crossorigin="anonymous"
-    /> <!-- Font Awesome-->
-    <link
-      href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap"
-      rel="stylesheet"
-    /> <!-- Google Fonts-->
-    <link rel="stylesheet" href="./assets/CSS/style.css" /> <!-- Relinked the style sheet after move into assets/CSS-->
-    <title>Work Day Scheduler</title>
-  </head>
+<html>
 
-  <body>
-    <header class="jumbotron">
-      <h1 class="display-3">Work Day Scheduler</h1>
-      <p class="lead">A simple calendar app for scheduling your work day</p>
-      <p id="currentDay" class="lead"></p>
-      <!-- Added Reset Functionality -->
-      
-      <div class="row resetRow">
-        <div class="col-md-6" >
-          <button class="btn resetBtn" id="reset">Reset</button>
-        </div>
-        <div class="col-md-6" >
-          <button class="btn saveAllBtn" id="saveAll">Save All</button>
-        </div>
-      </div>
-    </header>
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js"></script>
+    <style>
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            padding-right: 15px;
+            padding-left: 15px;
+            margin-top: 20px;
+           
+        }
+
+        .card {
+            width: 18rem;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            background-color: white;
+            box-shadow: 0px 0px 10px rgb(0 0 0 / 10%);
+            margin-left: -1000px;
+        }
+
+        .card-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding: 20px;
+        }
+
+        .card-img-top {
+            width: 80px;
+            height: 80px;
+            margin-right: 20px;
+        }
+
+        .card-title {
+            font-size: 24px;
+            margin-bottom: 0;
+            font-weight: bold;
+        }
+
+        .card-text {
+            font-size: 18px;
+            margin-bottom: 0;
+        }
+
+        .date-time {
+            font-size: 18px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 20px;
+            padding: 20px;
+        }
+    </style>
+</head>
+
+<body>
     <div class="container">
-      <!-- Timeblocks go here -->
-      <!-- 9 AM-->
-      <div class="row">
-        <div class="col-md-1 hour">
-          <p class="time-block">9 AM</p>
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title" id="city"></h5>
+                <img src="" id="weather-icon" class="card-img-top">
+                <p class="card-text" id="temperature"></p>
+                <!-- <p class="card-text" id="latitude"></p>
+                <p class="card-text" id="longitude"></p> -->
+                <p class="card-text" id="date"></p>
+            </div>
         </div>
-        <div class="col-md-10 textarea" id="9">
-          <textarea class="col-10 description" id="t9"></textarea>
-        </div>
-        <div class="col-md-1">
-          <button class="btn saveBtn" id="save9">Save</button>
-        </div>
-      </div>
-      <!-- 10 AM-->
-      <div class="row" >
-        <div class="col-md-1 hour">
-          <p class="time-block">10 AM</p>
-        </div>
-        <div class="col-md-10 textarea" id="10">
-          <textarea class="col-10 description" id="t10"></textarea>
-        </div>
-        <div class="col-md-1">
-          <button class="btn saveBtn" id="save10">Save</button>
-        </div>
-      </div>
-      <!-- 11 AM-->
-      <div class="row">
-        <div class="col-md-1 hour">
-          <p class="time-block">11 AM</p>
-        </div>
-        <div class="col-md-10 textarea" id="11">
-          <textarea class="col-10 description" id="t11"></textarea>
-        </div>
-        <div class="col-md-1">
-          <button class="btn saveBtn" id="save11">Save</button>
-        </div>
-      </div>
-      <!-- 12 AM-->
-      <div class="row">
-        <div class="col-md-1 hour">
-          <p class="time-block">12 AM</p>
-        </div>
-        <div class="col-md-10 textarea" id="12">
-          <textarea class="col-10 description" id="t12"></textarea>
-        </div>
-        <div class="col-md-1">
-          <button class="btn saveBtn" id="save12">Save</button>
-        </div>
-      </div>
-      <!-- 1 PM-->
-      <div class="row">
-        <div class="col-md-1 hour">
-          <p class="time-block">1 PM</p>
-        </div>
-        <div class="col-md-10 textarea" id="13">
-          <textarea class="col-10 description" id="t13"></textarea>
-        </div>
-        <div class="col-md-1">
-          <button class="btn saveBtn" id="save13">Save</button>
-        </div>
-      </div>
-      <!-- 2 PM-->
-      <div class="row">
-        <div class="col-md-1 hour">
-          <p class="time-block">2 PM</p>
-        </div>
-        <div class="col-md-10 textarea" id="14">
-          <textarea class="col-10 description" id="t14"></textarea>
-        </div>
-        <div class="col-md-1">
-          <button class="btn saveBtn" id="save14">Save</button>
-        </div>
-      </div>
-      <!-- 3 PM-->
-      <div class="row">
-        <div class="col-md-1 hour">
-          <p class="time-block">3 PM</p>
-        </div>
-        <div class="col-md-10 textarea" id="15">
-          <textarea class="col-10 description" id="t15"></textarea>
-        </div>
-        <div class="col-md-1">
-          <button class="btn saveBtn" id="save15">Save</button>
-        </div>
-      </div>
-      <!-- 4 PM-->
-      <div class="row">
-        <div class="col-md-1 hour">
-          <p class="time-block">4 PM</p>
-        </div>
-        <div class="col-md-10 textarea" id="16">
-          <textarea class="col-10 description" id="t16"></textarea>
-        </div>
-        <div class="col-md-1">
-          <button class="btn saveBtn" id="save16">Save</button>
-        </div>
-      </div>
-      <!-- 5 PM-->
-      <div class="row">
-        <div class="col-md-1 hour">
-          <p class="time-block">5 PM</p>
-        </div>
-        <div class="col-md-10 textarea" id="17">
-          <textarea class="col-10 description" id="t17"></textarea>
-        </div>
-        <div class="col-md-1">
-          <button class="btn saveBtn" id="save17">Save</button>
-        </div>
-      </div>
-      
-
     </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
+    <script>
+        const apiKey = "5f81365ae536b7da813d034c891315db";
+        const weatherUrl = "https://api.openweathermap.org/data/2.5/weather";
+        $(document).ready(function () {
+            // Get the user's location
+            navigator.geolocation.getCurrentPosition(function (position) {
+                let latitude = position.coords.latitude;
+                let longitude = position.coords.longitude;
 
+                // Make the API call to get the weather information
+                $.ajax({
+                    url: weatherUrl + "?lat=" + latitude + "&lon=" + longitude + "&appid=" + apiKey + "&units=metric",
+                    success: function (result) {
+                        console.log(result);
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
-    <script src="./assets/JS/script.js"></script> <!-- My Script-->
-  </body>
-</html>
+                        // Update the weather information on the page
+                        $("#city").html(result.name);
+                        $("#weather-icon").attr("src", "http://openweathermap.org/img/w/" + result.weather[0].icon + ".png");
+                        $("#temperature").html("Temperature: " + result.main.temp + "&#8451;");
+                        $("#latitude").html("Latitude: " + latitude);
+                        $("#longitude").html("Longitude: " + longitude);
+
+                        // Use Moment.js to format the date
+                        let date = moment().format("MMMM Do YYYY, h:mm:ss a");
+                        $("#date").html("Today's date: " + date);
+                    }
+                });
+            });
+        });
+    </script>
