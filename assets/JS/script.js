@@ -2,24 +2,45 @@
 
     var environment = "T"; // Sets environment to Testing or Production
     var forceHour = 11; // for testing forces the time to what is contained in the variable
-    var planner_storage = []
-// Set Environment Test / Production Variables. 
+    // var planner_storage = []
+    const day = moment().format('ddd');
+    var WeekPlan ={Mon:[1,2,3],Tue:[4,5,6],Wed:[7,8,9],Thu:[10,11,12],Fri:[13,14,15]}; //Fictitious data
+    var Token = {Day:"Mon",Today:0,Selection:0}
+    Token.Day = day;
+    switch(day){
+        case 'Mon':
+            Token.Today = 1;
+            Token.Selected = 1;
+            break;
+        case 'Tue':
+            Token.Today = 2;
+            Token.Selected = 2;
+            break;
+        case 'Wed':
+            Token.Today = 3;
+            Token.Selected = 3;
+            break;
+        case 'Thu':
+            Token.Today = 4;
+            Token.Selected = 4;
+            break;
+        case 'Fri':
+            Token.Today = 5;
+            Token.Selected = 6;
+            break;
+        default:
+            break
+    };
 
+    // Set Environment Test / Production Variables. 
     if (environment ==="T") {
         var currentHour = forceHour;
+        Token.Day = 'Wed';
         console.log("Current Hour: "+currentHour);
     } else {
         var currentHour = moment().format('H'); // Get the Current Hour
         console.log("Current Hour: "+currentHour);
-    }
-var WeekPlan ={Mon:[],Tue:[],Wed:[],Thu:[],Fri:[]};
-    // console.log(WeekPlan);
-    // console.log(WeekPlan.Mon);
-    // console.log(WeekPlan.Mon[0])
-    // WeekPlan.Mon.push(11)
-    // console.log(WeekPlan.Mon);
-    // WeekPlan["Thu"] = [12,13,14];
-    // console.log(WeekPlan.Thur);
+    };
 
 function setattributes(hour){
     var attributes =['col-md-10 textarea present','col-md-10 textarea future','col-md-10 textarea past']; 
@@ -107,40 +128,45 @@ function setattributes(hour){
             default:
 
                 break
-            }
-        
+            }      
     }
-}
+};
 
 function get_local_storage(){
     var prevStorage = localStorage.getItem("Planner");
     if (prevStorage != null){
         Planner = JSON.parse(prevStorage);
-        text9El.val(Planner[0]);
-        text10El.val(Planner[1]);
-        text11El.val(Planner[2]);
-        text12El.val(Planner[3]);
-        text13El.val(Planner[4]);
-        text14El.val(Planner[5]);
-        text15El.val(Planner[6]);
-        text16El.val(Planner[7]);
-        text17El.val(Planner[8]);
+        getdayArray=Planner[Token.Day];
+        console.log(WeekPlan.Mon);
+
+        text9El.val(getdayArray[0]);
+        text10El.val(getdayArray[1]);
+        text11El.val(getdayArray[2]);
+        text12El.val(getdayArray[3]);
+        text13El.val(getdayArray[4]);
+        text14El.val(getdayArray[5]);
+        text15El.val(getdayArray[6]);
+        text16El.val(getdayArray[7]);
+        text17El.val(getdayArray[8]);
     }
-}
+};
 function set_local_storage(){
-    planner_storage[0] = text9El.val();
-    planner_storage[1] = text10El.val();
-    planner_storage[2] = text11El.val();
-    planner_storage[3] = text12El.val();
-    planner_storage[4] = text13El.val();
-    planner_storage[5] = text14El.val();
-    planner_storage[6] = text15El.val();
-    planner_storage[7] = text16El.val();
-    planner_storage[8] = text17El.val();
+    setDayArray = WeekPlan[Token.Day];
+
+    setDayArray[0] = text9El.val();
+    setDayArray[1] = text10El.val();
+    setDayArray[2] = text11El.val();
+    setDayArray[3] = text12El.val();
+    setDayArray[4] = text13El.val();
+    setDayArray[5] = text14El.val();
+    setDayArray[6] = text15El.val();
+    setDayArray[7] = text16El.val();
+    setDayArray[8] = text17El.val();
     
+    //WeekPlan[Token.Day] = setDayArray
     // store updated planner details
-    localStorage.setItem("Planner", JSON.stringify(planner_storage));
-}
+    localStorage.setItem("Planner", JSON.stringify(WeekPlan));
+};
 
 // Clear the localStorage to Start - USE IF NEEDED WHEN TESTING
 
@@ -164,8 +190,8 @@ function set_local_storage(){
 
 
 
-    if (currentHour > 17 || currentHour < 9) {
-        currentDayEl.text ("We are now Planning For Tommorow Now! Current Date & Time: "+moment().format('LLLL')); // Targets the CurrentDay Element and replaces the Text with the Time and Date in the format Day, Month Date, Year Time (AM/PM)
+    if (currentHour > 17 || currentHour < 9 || Token.Selected > Token.Today ) {
+        currentDayEl.text ("We are now forward Planning! Current Date & Time: "+moment().format('LLLL')); // Targets the CurrentDay Element and replaces the Text with the Time and Date in the format Day, Month Date, Year Time (AM/PM)
         if (environment="T") {console.log("Not Between 9am - 5pm e.g. NEXT DAY")}; 
         textarea9El.attr ('class','col-md-10 textarea future');
         textarea10El.attr ('class','col-md-10 textarea future');
@@ -176,6 +202,18 @@ function set_local_storage(){
         textarea15El.attr ('class','col-md-10 textarea future');
         textarea16El.attr ('class','col-md-10 textarea future');
         textarea17El.attr ('class','col-md-10 textarea future');
+    } else if (currentHour > 17 || currentHour < 9 || Token.Selected < Token.Today){
+        currentDayEl.text ("We are now amending old Planning! Current Date & Time: "+moment().format('LLLL')); // Targets the CurrentDay Element and replaces the Text with the Time and Date in the format Day, Month Date, Year Time (AM/PM)
+        if (environment="T") {console.log("Not Between 9am - 5pm e.g. NEXT DAY")}; 
+        textarea9El.attr ('class','col-md-10 textarea past');
+        textarea10El.attr ('class','col-md-10 textarea past');
+        textarea11El.attr ('class','col-md-10 textarea past');
+        textarea12El.attr ('class','col-md-10 textarea past');
+        textarea13El.attr ('class','col-md-10 textarea past');
+        textarea14El.attr ('class','col-md-10 textarea past');
+        textarea15El.attr ('class','col-md-10 textarea past');
+        textarea16El.attr ('class','col-md-10 textarea past');
+        textarea17El.attr ('class','col-md-10 textarea past');
     } else {
         currentDayEl.text (moment().format('LLLL')); // Targets the CurrentDay Element and replaces the Text with the Time and Date in the format Day, Month Date, Year Time (AM/PM)
         
@@ -198,20 +236,66 @@ function set_local_storage(){
 get_local_storage();
 
 //Save all planned activities to local storage
-var saveAllButton = document.querySelector("#saveAll");
-saveAllButton.addEventListener("click",function(event) {
+var saveDayButton = document.querySelector("#saveAll");
+saveDayButton.addEventListener("click",function(event) {
     event.preventDefault(); // Prevent default behaviour
-    set_local_storage();
-})
-
-// Adding Reset Functionality
-var resetButton = document.querySelector("#reset");
-resetButton.addEventListener("click", function(event) {
-    event.preventDefault();
-    for (i=0; i < 9; i++){
-        planner_storage[i]='';
+    
+    //Only set storage if it is a working day
+    if (Token.Day != "Sat" || Token.Day != "Sun"){
+        set_local_storage();
+    }else{
+        console.log("Sorry, can log data for Saturday or Sunday")
     }
-    localStorage.setItem("Planner", JSON.stringify(planner_storage));
+});
+// Adding Reset Functionality
+var resetDayButton = document.querySelector("#reset");
+resetDayButton.addEventListener("click", function(event) {
+    event.preventDefault();
+    setDayArray = WeekPlan[Token.Day];
+
+    for (i=0; i < 9; i++){
+        setDayArray[i]='';
+    }
+    localStorage.setItem("Planner", JSON.stringify(WeekPlan));
     get_local_storage()
 });
-
+// Set the day to Monday and load data
+var mondayButton = document.querySelector("#monday");
+mondayButton.addEventListener("click", function(event) {
+    event.preventDefault();
+    Token.Day = 'Mon';
+    Token.Selected = 1;
+    get_local_storage()
+});
+// Set the day to Tuesday and load data
+var tuesdayButton = document.querySelector("#tuesday");
+tuesdayButton.addEventListener("click", function(event) {
+    event.preventDefault();
+    Token.Day = 'Tue';
+    Token.Selected = 2;
+    get_local_storage()
+});
+// Set the day to Monday and load data
+var wednesdayButton = document.querySelector("#wednesday");
+wednesdayButton.addEventListener("click", function(event) {
+    event.preventDefault();
+    Token.Day = 'Wed';
+    Token.Selected = 3;
+    get_local_storage()
+});
+// Set the day to Monday and load data
+var thursdayButton = document.querySelector("#thursday");
+thursdayButton.addEventListener("click", function(event) {
+    event.preventDefault();
+    Token.Day = 'Thu';
+    Token.Selected = 4;
+    get_local_storage()
+});
+// Set the day to Monday and load data
+var fridayButton = document.querySelector("#friday");
+fridayButton.addEventListener("click", function(event) {
+    event.preventDefault();
+    Token.Day = 'Fri';
+    Token.Selected = 5;
+    get_local_storage()
+});

@@ -102,8 +102,20 @@ textarea {
   color: white;
   margin: 20px 20px 20px 20px;
 }
-
 .saveAllBtn i:hover {
+  font-size: 20px;
+  transition: all 0.3s ease-in-out;
+}
+.mondayBtn, .tuesdayBtn, .wednesdayBtn, .thursdayBtn, .fridayBtn {
+  border-left: 1px solid black;
+  border-top-right-radius: 15px;
+  border-bottom-right-radius: 15px;
+  background-color: #d50606;
+  color: white;
+  margin: 20px 20px 20px 20px;
+}
+
+.mondayBtn .tuesdayBtn .wednesdayBtn .thursdayBtn .fridayBtn i:hover {
   font-size: 20px;
   transition: all 0.3s ease-in-out;
 }
