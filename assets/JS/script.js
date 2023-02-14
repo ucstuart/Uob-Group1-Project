@@ -1,10 +1,10 @@
 // Environment Variables
 
-    var environment = "T"; // Sets environment to Testing or Production
+    var environment = "P"; // Sets environment to Testing or Production
     var forceHour = 11; // for testing forces the time to what is contained in the variable
     // var planner_storage = []
     const day = moment().format('ddd');
-    var WeekPlan ={Mon:[1,2,3],Tue:[4,5,6],Wed:[7,8,9],Thu:[10,11,12],Fri:[13,14,15]}; //Fictitious data
+    var WeekPlan ={Mon:[1,2,3],Tue:[4,5,6],Wed:[7,8,9],Thu:[10,11,12],Fri:[13,14,15],Sat:[],Sun:[]}; //Fictitious data
     var Token = {Day:"Mon",Today:0,Selection:0}
     Token.Day = day;
     switch(day){
@@ -42,94 +42,126 @@
         console.log("Current Hour: "+currentHour);
     };
 
-function setattributes(hour){
-    var attributes =['col-md-10 textarea present','col-md-10 textarea future','col-md-10 textarea past']; 
-    for(i=9;i <18;i++){
-        switch (i) {
-            case 9:
-                if (i == hour){
-                    textarea9El.attr ('class',attributes[0]);    
-                }else if(i > hour){
-                    textarea9El.attr ('class',attributes[1]);
-                }else{
-                    textarea9El.attr ('class',attributes[2]);
-                }
-                break; 
-            case 10:
-                if (i == hour){
-                    textarea10El.attr ('class',attributes[0]);    
-                }else if(i > hour){
-                    textarea10El.attr ('class',attributes[1]);
-                }else{
-                    textarea10El.attr ('class',attributes[2]);
-                }
-                break;
-            case 11:
-                if (i == hour){
-                    textarea11El.attr ('class',attributes[0]);    
-                }else if(i > hour){
-                    textarea11El.attr ('class',attributes[1]);
-                }else{
-                    textarea11El.attr ('class',attributes[2]);
-                }
-                break
-            case 12:
-                if (i == hour){
-                    textarea12El.attr ('class',attributes[0]);    
-                }else if(i > hour){
-                    textarea12El.attr ('class',attributes[1]);
-                }else{
-                    textarea12El.attr ('class',attributes[2]);
-                }
-                break
-            case 13:
-                if (i == hour){
-                    textarea13El.attr ('class',attributes[0]);    
-                }else if(i > hour){
-                    textarea13El.attr ('class',attributes[1]);
-                }else{
-                    textarea13El.attr ('class',attributes[2]);
-                }
-                break
-            case 14:
-                if (i == hour){
-                    textarea14El.attr ('class',attributes[0]);    
-                }else if(i > hour){
-                    textarea14El.attr ('class',attributes[1]);
-                }else{
-                    textarea14El.attr ('class',attributes[2]);
-                }                break
-            case 15:
-                if (i == hour){
-                    textarea15El.attr ('class',attributes[0]);    
-                }else if(i > hour){
-                    textarea15El.attr ('class',attributes[1]);
-                }else{
-                    textarea15El.attr ('class',attributes[2]);
-                }
-                break
-            case 16:
-                if (i == hour){
-                    textarea16El.attr ('class',attributes[0]);    
-                }else if(i > hour){
-                    textarea16El.attr ('class',attributes[1]);
-                }else{
-                    textarea16El.attr ('class',attributes[2]);
-                }
-            case 17:
-                if (i == hour){
-                    textarea17El.attr ('class',attributes[0]);    
-                }else if(i > hour){
-                    textarea17El.attr ('class',attributes[1]);
-                }else{
-                    textarea17El.attr ('class',attributes[2]);
-                }
-                break;
-            default:
+function setFutureAttributes(){
+    textarea9El.attr ('class','col-md-10 textarea future');
+    textarea10El.attr ('class','col-md-10 textarea future');
+    textarea11El.attr ('class','col-md-10 textarea future');
+    textarea12El.attr ('class','col-md-10 textarea future');
+    textarea13El.attr ('class','col-md-10 textarea future');
+    textarea14El.attr ('class','col-md-10 textarea future');
+    textarea15El.attr ('class','col-md-10 textarea future');
+    textarea16El.attr ('class','col-md-10 textarea future');
+    textarea17El.attr ('class','col-md-10 textarea future');
+}
+function setPastAttributes(){
+    textarea9El.attr ('class','col-md-10 textarea past');
+    textarea10El.attr ('class','col-md-10 textarea past');
+    textarea11El.attr ('class','col-md-10 textarea past');
+    textarea12El.attr ('class','col-md-10 textarea past');
+    textarea13El.attr ('class','col-md-10 textarea past');
+    textarea14El.attr ('class','col-md-10 textarea past');
+    textarea15El.attr ('class','col-md-10 textarea past');
+    textarea16El.attr ('class','col-md-10 textarea past');
+    textarea17El.attr ('class','col-md-10 textarea past');        
+}
 
-                break
-            }      
-    }
+
+
+function setAttributes(hour){
+    var attributes =['col-md-10 textarea present','col-md-10 textarea future','col-md-10 textarea past']; 
+   if (Token.Selected > Token.Today){
+        setFutureAttributes();
+
+    } else if (Token.Selected < Token.Today){
+        setPastAttributes();
+    } else{
+        for(i=9;i <18;i++){
+            switch (i) {
+                case 9:
+                    if (i == hour){
+                        textarea9El.attr ('class',attributes[0]);    
+                    }else if(i > hour){
+                        textarea9El.attr ('class',attributes[1]);
+                    }else{
+                        textarea9El.attr ('class',attributes[2]);
+                    }
+                    break; 
+                case 10:
+                    if (i == hour){
+                        textarea10El.attr ('class',attributes[0]);    
+                    }else if(i > hour){
+                        textarea10El.attr ('class',attributes[1]);
+                    }else{
+                        textarea10El.attr ('class',attributes[2]);
+                    }
+                    break;
+                case 11:
+                    if (i == hour){
+                        textarea11El.attr ('class',attributes[0]);    
+                    }else if(i > hour){
+                        textarea11El.attr ('class',attributes[1]);
+                    }else{
+                        textarea11El.attr ('class',attributes[2]);
+                    }
+                    break
+                case 12:
+                    if (i == hour){
+                        textarea12El.attr ('class',attributes[0]);    
+                    }else if(i > hour){
+                        textarea12El.attr ('class',attributes[1]);
+                    }else{
+                        textarea12El.attr ('class',attributes[2]);
+                    }
+                    break
+                case 13:
+                    if (i == hour){
+                        textarea13El.attr ('class',attributes[0]);    
+                    }else if(i > hour){
+                        textarea13El.attr ('class',attributes[1]);
+                    }else{
+                        textarea13El.attr ('class',attributes[2]);
+                    }
+                    break
+                case 14:
+                    if (i == hour){
+                        textarea14El.attr ('class',attributes[0]);    
+                    }else if(i > hour){
+                        textarea14El.attr ('class',attributes[1]);
+                    }else{
+                        textarea14El.attr ('class',attributes[2]);
+                    }                break
+                case 15:
+                    if (i == hour){
+                        textarea15El.attr ('class',attributes[0]);    
+                    }else if(i > hour){
+                        textarea15El.attr ('class',attributes[1]);
+                    }else{
+                        textarea15El.attr ('class',attributes[2]);
+                    }
+                    break
+                case 16:
+                    if (i == hour){
+                        textarea16El.attr ('class',attributes[0]);    
+                    }else if(i > hour){
+                        textarea16El.attr ('class',attributes[1]);
+                    }else{
+                        textarea16El.attr ('class',attributes[2]);
+                    }
+                case 17:
+                    if (i == hour){
+                        textarea17El.attr ('class',attributes[0]);    
+                    }else if(i > hour){
+                        textarea17El.attr ('class',attributes[1]);
+                    }else{
+                        textarea17El.attr ('class',attributes[2]);
+                    }
+                    break;
+                default:
+
+                    break
+                }      
+            }
+        }
 };
 
 function get_local_storage(){
@@ -168,13 +200,7 @@ function set_local_storage(){
     localStorage.setItem("Planner", JSON.stringify(WeekPlan));
 };
 
-// Clear the localStorage to Start - USE IF NEEDED WHEN TESTING
-
-// localStorage.clear();
-
-
 // Add the Current Time and Date to the Page.
-
     var currentDayEl = $('#currentDay'); // Access the CurrentDay ID 
 
     // I have added this IF statement, if the time is > 5pm it displays a message "We are now Planning for Tommorow Now!" in addition to the CURRENT time and Date. OTHERWISE it is between 9am - 5pm and displays JUST the Time and Date.
@@ -190,35 +216,20 @@ function set_local_storage(){
 
 
 
-    if (currentHour > 17 || currentHour < 9 || Token.Selected > Token.Today ) {
+    if (currentHour > 17 || currentHour < 9) {
         currentDayEl.text ("We are now forward Planning! Current Date & Time: "+moment().format('LLLL')); // Targets the CurrentDay Element and replaces the Text with the Time and Date in the format Day, Month Date, Year Time (AM/PM)
         if (environment="T") {console.log("Not Between 9am - 5pm e.g. NEXT DAY")}; 
-        textarea9El.attr ('class','col-md-10 textarea future');
-        textarea10El.attr ('class','col-md-10 textarea future');
-        textarea11El.attr ('class','col-md-10 textarea future');
-        textarea12El.attr ('class','col-md-10 textarea future');
-        textarea13El.attr ('class','col-md-10 textarea future');
-        textarea14El.attr ('class','col-md-10 textarea future');
-        textarea15El.attr ('class','col-md-10 textarea future');
-        textarea16El.attr ('class','col-md-10 textarea future');
-        textarea17El.attr ('class','col-md-10 textarea future');
-    } else if (currentHour > 17 || currentHour < 9 || Token.Selected < Token.Today){
+        setFutureAttributes();
+        
+    } else if (currentHour > 17 || currentHour < 9){
         currentDayEl.text ("We are now amending old Planning! Current Date & Time: "+moment().format('LLLL')); // Targets the CurrentDay Element and replaces the Text with the Time and Date in the format Day, Month Date, Year Time (AM/PM)
         if (environment="T") {console.log("Not Between 9am - 5pm e.g. NEXT DAY")}; 
-        textarea9El.attr ('class','col-md-10 textarea past');
-        textarea10El.attr ('class','col-md-10 textarea past');
-        textarea11El.attr ('class','col-md-10 textarea past');
-        textarea12El.attr ('class','col-md-10 textarea past');
-        textarea13El.attr ('class','col-md-10 textarea past');
-        textarea14El.attr ('class','col-md-10 textarea past');
-        textarea15El.attr ('class','col-md-10 textarea past');
-        textarea16El.attr ('class','col-md-10 textarea past');
-        textarea17El.attr ('class','col-md-10 textarea past');
+        setPastAttributes();
+
     } else {
         currentDayEl.text (moment().format('LLLL')); // Targets the CurrentDay Element and replaces the Text with the Time and Date in the format Day, Month Date, Year Time (AM/PM)
-        
         if (environment="T") {console.log("9am")};
-            setattributes(currentHour);  
+            setAttributes(currentHour);  
     };
 
 // Access the Text for each Time Slot
@@ -244,7 +255,7 @@ saveDayButton.addEventListener("click",function(event) {
     if (Token.Day != "Sat" || Token.Day != "Sun"){
         set_local_storage();
     }else{
-        console.log("Sorry, can log data for Saturday or Sunday")
+        console.log("Sorry, can't log data for Saturday or Sunday")
     }
 });
 // Adding Reset Functionality
@@ -266,6 +277,14 @@ mondayButton.addEventListener("click", function(event) {
     Token.Day = 'Mon';
     Token.Selected = 1;
     get_local_storage()
+    if (Token.Selected > Token.Today){
+        setFutureAttributes();
+    } else if (Token.Selected < Token.Today){
+        setPastAttributes();
+    } else {
+        setAttributes(currentHour);
+    }
+
 });
 // Set the day to Tuesday and load data
 var tuesdayButton = document.querySelector("#tuesday");
@@ -274,6 +293,13 @@ tuesdayButton.addEventListener("click", function(event) {
     Token.Day = 'Tue';
     Token.Selected = 2;
     get_local_storage()
+    if (Token.Selected > Token.Today){
+        setFutureAttributes();
+    } else if (Token.Selected < Token.Today){
+        setPastAttributes();
+    } else {
+        setAttributes(currentHour);
+    }
 });
 // Set the day to Monday and load data
 var wednesdayButton = document.querySelector("#wednesday");
@@ -282,6 +308,14 @@ wednesdayButton.addEventListener("click", function(event) {
     Token.Day = 'Wed';
     Token.Selected = 3;
     get_local_storage()
+    
+    if (Token.Selected > Token.Today){
+        setFutureAttributes();
+    } else if (Token.Selected < Token.Today){
+        setPastAttributes();
+    } else {
+        setAttributes(currentHour);
+    }
 });
 // Set the day to Monday and load data
 var thursdayButton = document.querySelector("#thursday");
@@ -290,6 +324,14 @@ thursdayButton.addEventListener("click", function(event) {
     Token.Day = 'Thu';
     Token.Selected = 4;
     get_local_storage()
+    
+    if (Token.Selected > Token.Today){
+        setFutureAttributes();
+    } else if (Token.Selected < Token.Today){
+        setPastAttributes();
+    } else {
+        setAttributes(currentHour);
+    }
 });
 // Set the day to Monday and load data
 var fridayButton = document.querySelector("#friday");
@@ -298,4 +340,12 @@ fridayButton.addEventListener("click", function(event) {
     Token.Day = 'Fri';
     Token.Selected = 5;
     get_local_storage()
+    
+    if (Token.Selected > Token.Today){
+        setFutureAttributes();
+    } else if (Token.Selected < Token.Today){
+        setPastAttributes();
+    } else {
+        setAttributes(currentHour);
+    }
 });
