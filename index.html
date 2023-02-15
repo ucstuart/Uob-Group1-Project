@@ -23,15 +23,13 @@
   </head>
 
   <body>
+
     <header class="jumbotron">
       <h1 class="display-3">Work Day Scheduler</h1>
       <p class="lead">A simple calendar app for scheduling your work day</p>
       <p id="currentDay" class="lead"></p>
-
       <div id="root">
-
       </div>
-      
           <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
           <script type="text/javascript">
              const settings = {
@@ -44,7 +42,7 @@
           "X-RapidAPI-Host": "quotes15.p.rapidapi.com"
         }
       };
-      
+    
       $.ajax(settings).done(function (response) {
         console.log(response);
           console.log(response.content)
@@ -59,35 +57,34 @@
       });
       
       </script>
-
-      <!-- Added Reset Functionality -->  
-      <div class="row resetRow">
-        <div class="col-md-2" >
-          <button class="btn resetBtn" id="reset">ResetDay</button>
+        
+        <!-- Added Reset Functionality -->  
+        <div class="row style-row justify-content-center">
+          <div class="col-sm-2" >
+            <button class="btn resetBtn" id="reset">ResetDay</button>
+          </div>
+          <div class="col-sm-1" >
+            <button class="btn mondayBtn" id="monday">Mon</button>
+          </div>
+          <div class="col-sm-1" >
+            <button class="btn tuesdayBtn" id="tuesday">Tue</button>
+          </div>
+          <div class="col-sm-1" >
+            <button class="btn wednesdayBtn" id="wednesday">Wed</button>
+          </div>
+          <div class="col-sm-1" >
+            <button class="btn thursdayBtn" id="thursday">Thu</button>
+          </div>
+          <div class="col-sm-1" >
+            <button class="btn fridayBtn" id="friday">Fri</button>
+          </div>
+          <div class="col-sm-2" >
+            <button class="btn saveAllBtn" id="saveAll">Save Day</button>
+          </div>
         </div>
-        <div class="col-md" >
-          <button class="btn mondayBtn" id="monday">Mon</button>
-        </div>
-        <div class="col-md" >
-          <button class="btn tuesdayBtn" id="tuesday">Tue</button>
-        </div>
-        <div class="col-md" >
-          <button class="btn wednesdayBtn" id="wednesday">Wed</button>
-        </div>
-        <div class="col-md" >
-          <button class="btn thursdayBtn" id="thursday">Thu</button>
-        </div>
-        <div class="col-md" >
-          <button class="btn fridayBtn" id="friday">Fri</button>
-        </div>
-        <div class="col-md-2" >
-          <button class="btn saveAllBtn" id="saveAll">Save Day</button>
-        </div>
-      </div>
-    
-      
+        
     </header>
-
+      
     <div class="container">
 
       <!-- Timeblocks go here -->

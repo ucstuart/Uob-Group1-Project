@@ -19,6 +19,7 @@ textarea {
   color: black;
   border-radius: 0;
   border-bottom: 10px solid black;
+  padding: 0;
 }
 
 .description {
@@ -31,10 +32,14 @@ textarea {
   font-weight: bold;
 }
 
-.row {
+/* .row {
   white-space: pre-wrap;
   height: 80px;
   border-top: 1px solid white;
+} */
+.style-row {
+  border-top: 1px solid white;
+  background-color: #06aed5;
 }
 
 .resetRow {
@@ -80,10 +85,10 @@ textarea {
 
 .resetBtn {
   border-left: 1px solid black;
-  border-top-right-radius: 15px;
-  border-bottom-right-radius: 15px;
-  background-color: #d50606;
+  border-radius: 20px;
+  background-color: #418283;
   color: white;
+  box-shadow: 0 5px #999;
   margin: 20px 20px 20px 20px;
 }
 
@@ -93,24 +98,32 @@ textarea {
 }
 
 /* Added Save All Button CSS */
-
 .saveAllBtn {
   border-left: 1px solid black;
-  border-top-right-radius: 15px;
-  border-bottom-right-radius: 15px;
-  background-color: #d50606;
+  border-radius: 20px;
+  background-color: #418283;
+  box-shadow: 0 5px #999;
   color: white;
   margin: 20px 20px 20px 20px;
 }
 .saveAllBtn i:hover {
+  background-color: #418283;
   font-size: 20px;
   transition: all 0.3s ease-in-out;
 }
+.saveAllBtn i:active {
+  background-color: #418283;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+
+
 .mondayBtn, .tuesdayBtn, .wednesdayBtn, .thursdayBtn, .fridayBtn {
   border-left: 1px solid black;
-  border-top-right-radius: 15px;
-  border-bottom-right-radius: 15px;
-  background-color: #d50606;
+  border-radius: 20px;
+  width: 80px;
+  background-color: #418283;
+  box-shadow: 0 5px #999;
   color: white;
   margin: 20px 20px 20px 20px;
 }
