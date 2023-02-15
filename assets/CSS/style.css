@@ -47,13 +47,6 @@ textarea {
   margin-bottom: 10px;
 }
 
-.numbersapi img {
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  margin-right: 10px;
-}
-
 .description {
   white-space: pre-wrap;
 }
@@ -64,11 +57,7 @@ textarea {
   font-weight: bold;
 }
 
-.row {
-  white-space: pre-wrap;
-  height: 80px;
-  border-top: 1px solid white;
-}
+
 
 .resetRow {
   white-space: pre-wrap;
