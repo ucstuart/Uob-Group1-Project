@@ -27,38 +27,82 @@
       <h1 class="display-3">Work Day Scheduler</h1>
       <p class="lead">A simple calendar app for scheduling your work day</p>
       <p id="currentDay" class="lead"></p>
+      <section class="apis">
+  
+        <div class="API-container">
+          <div class="numbersapi">
+            <p>Quote of the day</p>
+            <div id="root">
+              
+            </div>
+            
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+            <script type="text/javascript">
+               const settings = {
+          "async": true,
+          "crossDomain": true,
+          "url": "https://api.quotable.io/random?minLength=100&maxLength=140",  
+          "method": "GET",
+        };
+        
+        $.ajax(settings).done(function (response) {
+          console.log(response);
+            console.log(response.content)
+        
+            var quote = $("<p>");
+            quote.text(response.content);
+            $("#root").append(quote);
+        
+            var author = $("<p>");
+            author.text(response.author);
+            $("#root").append(author);
+        });
+        
+        </script>
+          </div>
+        
+      
+      <div class="numbersapi">
+      <p>Today in history</p>
+       <div id="history">
 
-      <div id="root">
-
-      </div>
+       </div>
       
-          <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-          <script type="text/javascript">
-             const settings = {
-        "async": true,
-        "crossDomain": true,
-        "url": "https://quotes15.p.rapidapi.com/quotes/random/",
-        "method": "GET",
-        "headers": {
-          "X-RapidAPI-Key": "5ef59f08c8mshb5c3ec90e02c6ffp14d29fjsn60631893c376",
-          "X-RapidAPI-Host": "quotes15.p.rapidapi.com"
-        }
-      };
-      
-      $.ajax(settings).done(function (response) {
-        console.log(response);
-          console.log(response.content)
-      
-          var quote = $("<h4>");
-          quote.text(response.content);
-          $("#root").append(quote);
-      
-          var originator = $("<h5>");
-          originator.text(response.originator.name);
-          $("#root").append(originator);
-      });
-      
-      </script>
+            
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+      <script type="text/javascript">
+        
+            const date = new Date();
+            let thisday = date.getDate();
+            let month = date.getMonth() + 1;
+            let year = date.getFullYear(); 
+            
+        const number = {
+            "async": true,
+            "crossDomain": true,
+            "url": "https://numbersapi.p.rapidapi.com/" + thisday + "/" + month + "/" + "date?fragment=true&json=true",
+            "method": "GET",
+            "headers": {
+                "X-RapidAPI-Key": "5ef59f08c8mshb5c3ec90e02c6ffp14d29fjsn60631893c376",
+                "X-RapidAPI-Host": "numbersapi.p.rapidapi.com"
+            }
+        };
+        
+        $.ajax(number).done(function (response) {
+            console.log(response);
+        
+            var numberFact = $("<p>");
+            numberFact.text(response.text);
+            $("#history").append(numberFact);
+        
+            var factYear = $("<h5>");
+            factYear.text(response.year);
+            $("#history").append(factYear);
+        });
+        </script>
+          </div>
+        </div>
+      </section>
 
       <!-- Added Reset Functionality -->  
       <div class="row resetRow">
