@@ -23,25 +23,21 @@
        const settings = {
 	"async": true,
 	"crossDomain": true,
-	"url": "https://quotes15.p.rapidapi.com/quotes/random/",
+	"url": "https://api.quotable.io/random?minLength=100&maxLength=140",  
 	"method": "GET",
-	"headers": {
-		"X-RapidAPI-Key": "5ef59f08c8mshb5c3ec90e02c6ffp14d29fjsn60631893c376",
-		"X-RapidAPI-Host": "quotes15.p.rapidapi.com"
-	}
 };
 
 $.ajax(settings).done(function (response) {
 	console.log(response);
     console.log(response.content)
 
-    var quote = $("<h3>");
+    var quote = $("<p>");
     quote.text(response.content);
     $("#root").append(quote);
 
-    var originator = $("<h5>");
-    originator.text(response.originator.name);
-    $("#root").append(originator);
+    var author = $("<h5>");
+    author.text(response.author);
+    $("#root").append(author);
 });
 
 </script>
