@@ -23,14 +23,14 @@
         <script type="text/javascript">
 
     const date = new Date();
-    let day = date.getDate();
+    let thisday = date.getDate();
     let month = date.getMonth() + 1;
     let year = date.getFullYear(); 
     
 const number = {
     "async": true,
     "crossDomain": true,
-    "url": "https://numbersapi.p.rapidapi.com/" + day + "/" + month + "/" + "date?fragment=true&json=true",
+    "url": "https://numbersapi.p.rapidapi.com/" + thisday + "/" + month + "/" + "date?fragment=true&json=true",
     "method": "GET",
     "headers": {
         "X-RapidAPI-Key": "5ef59f08c8mshb5c3ec90e02c6ffp14d29fjsn60631893c376",

@@ -28,80 +28,54 @@
       <p class="lead">A simple calendar app for scheduling your work day</p>
       <p id="currentDay" class="lead"></p>
 
-      <div class="container">
-        <!-- Content here -->
-        <div class="row">
-          <div class="col-md-10 bg-info text-white">
-            <div id="root">
+<!-- Section for NumbersAPI and QuotesAPI -->
 
-            </div>
-            
-                <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-                <script type="text/javascript">
-        
-            const date = new Date();
-            let day = date.getDate();
-            let month = date.getMonth() + 1;
-            let year = date.getFullYear(); 
-            
-        const number = {
-            "async": true,
-            "crossDomain": true,
-            "url": "https://numbersapi.p.rapidapi.com/" + day + "/" + month + "/" + "date?fragment=true&json=true",
-            "method": "GET",
-            "headers": {
-                "X-RapidAPI-Key": "5ef59f08c8mshb5c3ec90e02c6ffp14d29fjsn60631893c376",
-                "X-RapidAPI-Host": "numbersapi.p.rapidapi.com"
-            }
-        };
-        
-        $.ajax(number).done(function (response) {
-            console.log(response);
-        
-            var numberFact = $("<p>");
-            numberFact.text(response.text);
-            $("#root").append(numberFact);
-        
-            var factYear = $("<h5>");
-            factYear.text(response.year);
-            $("#root").append(factYear);
-        });
-      </script>
-          </div>
-        </div> 
-      </div>
-
-      <div class="container">
-        <!-- Content here -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script type="text/javascript">
-       const settings = {
-	"async": true,
-	"crossDomain": true,
-	"url": "https://quotes15.p.rapidapi.com/quotes/random/",
-	"method": "GET",
-	"headers": {
-		"X-RapidAPI-Key": "5ef59f08c8mshb5c3ec90e02c6ffp14d29fjsn60631893c376",
-		"X-RapidAPI-Host": "quotes15.p.rapidapi.com"
-	}
-};
-
-$.ajax(settings).done(function (response) {
-	console.log(response);
-    console.log(response.content)
-
-    var quote = $("<h3>");
-    quote.text(response.content);
-    $("#root").append(quote);
-
-    var originator = $("<h5>");
-    originator.text(response.originator.name);
-    $("#root").append(originator);
-});
-</script>
-      </div>
+<section class="apis">
   
+  <div class="API-container">
+    
+    <div class="numbersapi">
+      <p>Today in history</p>
+      <div id="root">
+        
+      </div>
+      
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+          <script type="text/javascript">
   
+      const date = new Date();
+      let thisday = date.getDate();
+      let month = date.getMonth() + 1;
+      let year = date.getFullYear(); 
+      
+  const number = {
+      "async": true,
+      "crossDomain": true,
+      "url": "https://numbersapi.p.rapidapi.com/" + thisday + "/" + month + "/" + "date?fragment=true&json=true",
+      "method": "GET",
+      "headers": {
+          "X-RapidAPI-Key": "5ef59f08c8mshb5c3ec90e02c6ffp14d29fjsn60631893c376",
+          "X-RapidAPI-Host": "numbersapi.p.rapidapi.com"
+      }
+  };
+  
+  $.ajax(number).done(function (response) {
+      console.log(response);
+  
+      var numberFact = $("<p>");
+      numberFact.text(response.text);
+      $("#root").append(numberFact);
+  
+      var factYear = $("<h5>");
+      factYear.text(response.year);
+      $("#root").append(factYear);
+  });
+  </script>
+    </div>
+  </div>
+</section>
+    
+
       <!-- Added Reset Functionality -->
       
       <div class="row resetRow">
@@ -128,6 +102,7 @@ $.ajax(settings).done(function (response) {
         </div>
       </div>
     </header>
+
     <div class="container">
       <!-- Timeblocks go here -->
       <!-- 9 AM-->

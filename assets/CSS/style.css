@@ -21,6 +21,39 @@ textarea {
   border-bottom: 10px solid black;
 }
 
+.apis {
+  padding: 0px;
+  background-color: #f2f2f2;
+}
+
+.API-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.numbersapi {
+  width: 45%;
+  margin-bottom: 0px;
+  padding: 0px;
+  background-color: rgb(94, 228, 156);
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+.numbersapi p {
+  font-size: 16px;
+  font-weight: bold;
+  line-height: 1.5;
+  margin-bottom: 10px;
+}
+
+.numbersapi img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
 .description {
   white-space: pre-wrap;
 }
@@ -102,29 +135,8 @@ textarea {
   color: white;
   margin: 20px 20px 20px 20px;
 }
+
 .saveAllBtn i:hover {
   font-size: 20px;
   transition: all 0.3s ease-in-out;
-}
-.mondayBtn, .tuesdayBtn, .wednesdayBtn, .thursdayBtn, .fridayBtn {
-  border-left: 1px solid black;
-  border-top-right-radius: 15px;
-  border-bottom-right-radius: 15px;
-  background-color: #d50606;
-  color: white;
-  margin: 20px 20px 20px 20px;
-}
-
-.mondayBtn .tuesdayBtn .wednesdayBtn .thursdayBtn .fridayBtn i:hover {
-  font-size: 20px;
-  transition: all 0.3s ease-in-out;
-}
-.modal-header, h4, .close {
-  background-color: #5cb85c;
-  color:white !important;
-  text-align: center;
-  font-size: 30px;
-}
-.modal-footer {
-  background-color: #f9f9f9;
 }
