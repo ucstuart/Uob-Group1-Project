@@ -1,5 +1,53 @@
 // Environment Variables
+const apiKey = "5f81365ae536b7da813d034c891315db";
 
+const weatherUrl = "https://api.openweathermap.org/data/2.5/weather";
+$(document).ready(function () {
+    // Declare the units variable outside of the toggleUnit function
+    let units = "metric";
+  
+    // Call the updateWeather function with the current units when the page loads
+    updateWeather(units);
+  
+    // Attach an event listener to the toggle button to switch between metric and imperial units
+    $("#toggle").on("click", function () {
+      // Toggle the units variable between "metric" and "imperial"
+      units = units === "metric" ? "imperial" : "metric";
+      // Call the updateWeather function with the new units
+      updateWeather(units);
+    });
+  
+    function updateWeather(units) {
+      // Get the user's location
+      navigator.geolocation.getCurrentPosition(function (position) {
+        let latitude = position.coords.latitude;
+        let longitude = position.coords.longitude;
+  
+        // Make the API call to get the weather information
+        $.ajax({
+          url: weatherUrl + "?lat=" + latitude + "&lon=" + longitude + "&appid=" + apiKey + `&units=${units}`,
+          success: function (result) {
+            console.log(result);
+  
+            // Update the weather information on the page
+            $("#city").html(result.name);
+            $("#weather-icon").attr("src", "http://openweathermap.org/img/w/" + result.weather[0].icon + ".png");
+            $("#temperature").html("Temperature: " + result.main.temp + "&#8451;");
+            $("#latitude").html("Latitude: " + latitude);
+            $("#longitude").html("Longitude: " + longitude);
+  
+            // Use Moment.js to format the date
+            let date = moment().format("MMMM Do YYYY, h:mm:ss a");
+            $("#date").html("Today's date: " + date);
+          },
+          error: function () {
+            // If there is an error with the API call, display an error message
+            $("#city").html("Unable to retrieve weather information");
+          },
+        });
+      });
+    }
+  });
     var environment = "P"; // Sets environment to Testing or Production
     var forceHour = 11; // for testing forces the time to what is contained in the variable
     // var planner_storage = []
