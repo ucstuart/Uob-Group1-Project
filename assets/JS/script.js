@@ -2,6 +2,7 @@
 
     var environment = "P"; // Sets environment to Testing or Production
     var forceHour = 11; // for testing forces the time to what is contained in the variable
+    
     // var planner_storage = []
     const day = moment().format('ddd');
     var WeekPlan ={Mon:[1,2,3],Tue:[4,5,6],Wed:[7,8,9],Thu:[10,11,12],Fri:[13,14,15],Sat:[],Sun:[]}; //Fictitious data
@@ -349,3 +350,131 @@ fridayButton.addEventListener("click", function(event) {
         setAttributes(currentHour);
     }
 });
+
+var todoButton = document.querySelector("#todoBtn");
+todoButton.addEventListener("click", function(event) {
+    $("#planModal").modal('show');
+    
+});
+//To do variables
+var todoTask = document.querySelector("#TodoTask");
+var todoDate = document.querySelector("#TodoDate");
+var todoForm = document.querySelector("#todo-form");
+var todoList = document.querySelector("#todo-list");
+
+var todoCountSpan = document.querySelector("#todo-count");
+var todos = [];
+init();
+function renderTodos() {
+    // Clear todoList element and update todoCountSpan
+    console.log(todoList);
+    
+    todoList.innerHTML = "";
+    //todoCountSpan.textContent = todos.length;
+  
+    // Render a new li for each todo
+    for (var i = 0; i < todos.length; i++) {
+      var todo = todos[i];
+    
+      var li = document.createElement('li');
+      li.textContent = todo;
+      li.setAttribute("data-index", i);
+  
+      var button = document.createElement('button');
+      button.textContent = "Done";
+  
+      li.append(button);
+      todoList.append(li);
+    }
+  }
+  function init() {
+    // Get stored todos from localStorage
+    // Parsing the JSON string to an object
+    var storedTodos = JSON.parse(localStorage.getItem("todos"));
+  
+    // If todos were retrieved from localStorage, update the todos array to it
+    if (storedTodos !== null) {
+      todos = storedTodos;
+    }
+  
+    // Render todos to the DOM
+    renderTodos();
+  }
+
+  function storeTodos() {
+    // Stringify and set "todos" key in localStorage to todos array
+    localStorage.setItem("todos", JSON.stringify(todos));
+  }
+
+// When form is submitted...(create a todo item)
+todoForm.addEventListener("submit", function(event) {
+    event.preventDefault();
+    console.log(event);
+    var todoTaskText = todoTask.value.trim();
+    var todoDateText = todoDate.value.trim();
+    var todoText = todoDateText+"|"+todoTaskText+" "
+    // Return from function early if submitted todoText is blank
+    if (todoText === "") {
+      return;
+    }
+  
+    // Add new todoText to todos array, clear the input
+    todos.push(todoText);
+    todoTask.value = "";
+    todoDate.value = "";
+
+    // Store updated todos in localStorage, re-render the list
+    storeTodos();
+    renderTodos();
+
+})
+
+// Remove a completed todo item...
+todoList.addEventListener("click", function(event) {
+    var element = event.target;
+  
+    // If that element is a button...
+    if (element.matches("button") === true) {
+      // Get its data-index value and remove the todo element from the list
+      var index = element.parentElement.getAttribute("data-index");
+      todos.splice(index, 1);
+
+      // Store updated todos in localStorage, re-render the list
+      storeTodos();
+      renderTodos();
+    }
+  });
+  
+// Datepicker widget
+$(function () {
+     $('#TodoDate').datepicker({
+       changeMonth: true,
+       changeYear: true,
+     });
+});
+// // Autocomplete widget
+// $(function () {
+//     var TodoTask = [
+//       'Bootstrap',
+//       'C',
+//       'C++',
+//       'CSS',
+//       'Express.js',
+//       'Git',
+//       'HTML',
+//       'Java',
+//       'JavaScript',
+//       'jQuery',
+//       'JSON',
+//       'MySQL',
+//       'Node.js',
+//       'NoSQL',
+//       'PHP',
+//       'Python',
+//       'React',
+//       'Ruby',
+//     ];
+//     $('#TodoTask').autocomplete({
+//       source: TodoTask,
+//     });
+//   });  
