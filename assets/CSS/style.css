@@ -31,11 +31,11 @@ textarea {
   font-weight: bold;
 }
 
-.row {
+/* .row {
   white-space: pre-wrap;
   height: 80px;
   border-top: 1px solid white;
-}
+} */
 
 .resetRow {
   white-space: pre-wrap;
@@ -46,6 +46,11 @@ textarea {
   background-color: #ffffff;
   color: #000000;
   border-top: 1px dashed #000000;
+}
+
+#currentDay {
+  text-align: right;
+  padding-top: 2%;
 }
 
 .past {
@@ -102,11 +107,17 @@ textarea {
   color: white;
   margin: 20px 20px 20px 20px;
 }
+
 .saveAllBtn i:hover {
   font-size: 20px;
   transition: all 0.3s ease-in-out;
 }
-.mondayBtn, .tuesdayBtn, .wednesdayBtn, .thursdayBtn, .fridayBtn {
+
+.mondayBtn,
+.tuesdayBtn,
+.wednesdayBtn,
+.thursdayBtn,
+.fridayBtn {
   border-left: 1px solid black;
   border-top-right-radius: 15px;
   border-bottom-right-radius: 15px;
@@ -119,7 +130,8 @@ textarea {
   font-size: 20px;
   transition: all 0.3s ease-in-out;
 }
-.modal-header, h4, .close {
+
+/* .modal-header, h4, .close {
   background-color: #5cb85c;
   color:white !important;
   text-align: center;
@@ -127,4 +139,168 @@ textarea {
 }
 .modal-footer {
   background-color: #f9f9f9;
+} */
+
+footer-cta {
+  border-bottom: 1px solid #373636;
+}
+
+.plan h5,
+i {
+  color: rgb(17, 17, 17);
+}
+
+.sub h5,
+btn {
+  color: rgb(10, 10, 10);
+}
+
+.sub1 {
+  background-color: white;
+  padding: 5px 0px 0px 20px;
+  border-radius: 10px;
+}
+
+.single-cta i {
+  color: rgb(24, 22, 22);
+  font-size: 30px;
+  float: left;
+  margin-top: 8px;
+}
+
+.cta-text {
+  padding-left: 15px;
+  display: inline-block;
+}
+
+.cta-text h4 {
+  color: #080808;
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 2px;
+}
+
+.cta-text span {
+  color: #0e0d0d;
+  font-size: 15px;
+}
+
+.modal-header {
+  background-color: #007bff;
+  color: white;
+}
+
+.modal-header button {
+  color: white;
+}
+
+.modal-body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.btn-group-toggle label:not(:first-of-type) {
+  border-left: none;
+}
+
+.btn-group-toggle label:not(:first-of-type)::before {
+  border-left: none;
+}
+
+
+.footer-content {
+  position: relative;
+  z-index: 2;
+}
+
+@media only screen and (max-width: 1204px) and (min-width: 770px) {
+  .follow-sm {
+    max-width: 40% !important;
+  }
+
+  .footer-section .container {
+    max-width: 100%;
+    margin-left: 0%;
+    margin-right: 0%;
+  }
+
+  .newss {
+    margin-right: 0% !important;
+  }
+}
+
+@media only screen and (max-width: 660px) and (min-width: 400px) {
+  .saveAllBtn {
+    margin: -25% -50% 0px 0px !important;
+  }
+}
+
+@media only screen and (max-width: 770px) {
+  .footer-section {
+    margin: -5% 0%;
+  }
+
+  .follow-sm h5 {
+    font-size: 2.5rem;
+  }
+
+  .hour {
+    width: 12% !important;
+  }
+
+  .follow-sm {
+    margin: 0% 10%
+  }
+
+  .past,
+  .present,
+  .future {
+    width: 65% !important;
+  }
+
+  .btnn {
+    width: 20% !important;
+  }
+
+  .plan {
+    text-align: left !important
+  }
+
+  .plan h5 {
+    font-size: 2.5rem;
+    margin-right: 4%;
+  }
+
+  .plan {
+    margin: 8% 6%;
+  }
+
+  .resetBtn {
+    margin: 0px 70% 0px 0px;
+  }
+
+  .saveAllBtn {
+    margin: -35% -50% 0px 0px;
+  }
+
+  .newss {
+    margin: 5% 7%;
+  }
+
+  .news {
+    font-size: 1.75rem
+  }
+
+  .appp p {
+    font-size: 1.5rem;
+  }
+
+  .appp h3 {
+    font-size: 2.5rem;
+  }
+
+  .appp {
+    margin: 0% 10%;
+  }
 }
