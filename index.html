@@ -82,7 +82,9 @@
     <div class="jumbotron">
 
       <div id="root">
+
       </div>
+      
           <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
           <script type="text/javascript">
              const settings = {
@@ -95,7 +97,7 @@
           "X-RapidAPI-Host": "quotes15.p.rapidapi.com"
         }
       };
-    
+      
       $.ajax(settings).done(function (response) {
         console.log(response);
           console.log(response.content)
