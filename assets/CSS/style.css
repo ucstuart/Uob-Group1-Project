@@ -33,7 +33,7 @@ textarea {
 
 /* .row {
   white-space: pre-wrap;
-  height: 49px;
+  height: 80px;
   border-top: 1px solid white;
 } */
 
@@ -113,28 +113,11 @@ textarea {
   transition: all 0.3s ease-in-out;
 }
 
-<<<<<<< HEAD
-#todoBtn {
-  border-left: 1px solid black;
-  border-radius: 15px;
-  width: 320px;
-  background-color: blue;
-  color: white;
-  margin: 20px 20px 20px 20px;
-}
-#todoBtn i:hover {
-  font-size: 20px;
-  transition: all 0.3s ease-in-out;
-}
-
-.mondayBtn, .tuesdayBtn, .wednesdayBtn, .thursdayBtn, .fridayBtn {
-=======
 .mondayBtn,
 .tuesdayBtn,
 .wednesdayBtn,
 .thursdayBtn,
 .fridayBtn {
->>>>>>> 87106fc3ab81ec12f7bb08120f78eeed4f85ff31
   border-left: 1px solid black;
   border-top-right-radius: 15px;
   border-bottom-right-radius: 15px;
@@ -156,14 +139,6 @@ textarea {
 }
 .modal-footer {
   background-color: #f9f9f9;
-<<<<<<< HEAD
-}
-
-.style-me{
-  background-color: cadetblue;
-  margin-top: 0px;
-  padding-top: 0px;
-=======
 } */
 
 footer-cta {
@@ -328,5 +303,4 @@ btn {
   .appp {
     margin: 0% 10%;
   }
->>>>>>> 87106fc3ab81ec12f7bb08120f78eeed4f85ff31
 }
