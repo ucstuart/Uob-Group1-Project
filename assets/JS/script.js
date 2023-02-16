@@ -379,10 +379,14 @@ function renderTodos() {
       var li = document.createElement('li');
       li.textContent = todo;
       li.setAttribute("data-index", i);
+      li.setAttribute("background","green");
   
       var button = document.createElement('button');
-      button.textContent = "Done";
-  
+      
+      button.textContent = "C";
+      // button.setAttribute("style","background:blue;");  use .style.background = "blue" etc
+      button.setAttribute("style","border-radius:15px;background:red;");
+      
       li.append(button);
       todoList.append(li);
     }
