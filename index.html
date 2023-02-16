@@ -13,27 +13,102 @@
       href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
       integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
       crossorigin="anonymous"
-      
-      /> <!-- Font Awesome-->
+    /> <!-- Font Awesome-->
     <link
       href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap"
       rel="stylesheet"
     /> <!-- Google Fonts-->
-    <link
-      rel="stylesheet"
-      href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"
-    />
     <link rel="stylesheet" href="./assets/CSS/style.css" /> <!-- Relinked the style sheet after move into assets/CSS-->
     <title>Work Day Scheduler</title>
   </head>
 <!-- This is for Stuart -->
   <body>
-    <header class="jumbotron">
-      <h1 class="display-3">Work Day Scheduler</h1>
-      <p class="lead">A simple calendar app for scheduling your work day</p>
-      <p id="currentDay" class="lead"></p>
-      <!-- Added Reset Functionality -->
+    <div class="container"> 
+      <div class="row">
+        <div class="col-md-8">
+          <!-- <h1 class="display-3">Work Day Scheduler</h1> -->
+          <!-- <p class="lead">A simple calendar app for scheduling your work day</p> -->
+          <p id="currentDay" class="lead"></p>
+
+        </div>
+        <div class="container-weather col-md-4">
+          <h1 class="text-center my-5"></h1>
+          <div class="text-center">
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#weatherSettings">
+              WEATHER SETTINGS
+            </button>
+          </div>
+          <div class="my-5">
+            <div class="card mx-auto" style="max-width: 25rem;">
+              <div class="card-header">
+                <h2 id="city">Loading...</h2>
+                <!-- <p id="date"></p> -->
+              </div>
+              <div class="card-body">
+                <img id="weather-icon" src="" alt="weather icon" class="mx-auto d-block">
+                <h3 id="temperature"></h3>
+                <!-- <p id="latitude"></p>
+                <p id="longitude"></p> -->
+              </div>
+            </div>
+          </div>
+        </div>
       
+        <!-- Weather settings modal -->
+        <div class="modal fade" id="weatherSettings" tabindex="-1" role="dialog" aria-labelledby="weatherSettingsLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="weatherSettingsLabel">Weather Settings</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <p>Temperature unit:</p>
+                <div class="btn-group" role="group">
+                  <button type="button" class="btn btn-secondary" id="option1">Fahrenheit (‎°F)</button>
+                  <button type="button" class="btn btn-secondary" id="option2">Celsius (‎°C)</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+    <div class="jumbotron">
+
+      <div id="root">
+
+      </div>
+      
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+          <script type="text/javascript">
+             const settings = {
+        "async": true,
+        "crossDomain": true,
+        "url": "https://quotes15.p.rapidapi.com/quotes/random/",
+        "method": "GET",
+        "headers": {
+          "X-RapidAPI-Key": "5ef59f08c8mshb5c3ec90e02c6ffp14d29fjsn60631893c376",
+          "X-RapidAPI-Host": "quotes15.p.rapidapi.com"
+        }
+      };
+      
+      $.ajax(settings).done(function (response) {
+        console.log(response);
+          console.log(response.content)
+      
+          var quote = $("<h4>");
+          quote.text(response.content);
+          $("#root").append(quote);
+      
+          var originator = $("<h5>");
+          originator.text(response.originator.name);
+          $("#root").append(originator);
+      });
+      
+      </script>
+
+      <!-- Added Reset Functionality -->  
       <div class="row resetRow">
         <div class="col-md-2" >
           <button class="btn resetBtn" id="reset">ResetDay</button>
@@ -57,160 +132,196 @@
           <button class="btn saveAllBtn" id="saveAll">Save Day</button>
         </div>
       </div>
-    </header>
-    <main class="row style-me">
-      <div class="container col-9">
-        <!-- Timeblocks go here -->
-        <!-- 9 AM-->
-        <div class="row justify-content-start">
-          <div class="col-2 hour">
-            <p class="time-block">9 AM</p>
-          </div>
-          <div class="col-10 textarea" id="9">
-            <textarea class="col-10 description" id="t9"></textarea>
-          </div>
-          
-        </div>
-        <!-- 10 AM-->
-        <div class="row justify-content-start" >
-          <div class="col-2 hour">
-            <p class="time-block">10 AM</p>
-          </div>
-          <div class="col-10 textarea" id="10">
-            <textarea class="col-10 description" id="t10"></textarea>
-          </div>
+    
+      
+    </div>
 
+    <div class="container">
+
+      <!-- Timeblocks go here -->
+      <!-- 9 AM-->
+      <div class="row justify-content-start">
+        <div class="col-md-1 hour">
+          <p class="time-block">9 AM</p>
         </div>
-        <!-- 11 AM-->
-        <div class="row justify-content-start">
-          <div class="col-2 hour">
-            <p class="time-block">11 AM</p>
-          </div>
-          <div class="col-10 textarea" id="11">
-            <textarea class="col-10 description" id="t11"></textarea>
-          </div>
+        <div class="col-md-10 textarea" id="9">
+          <textarea class="col-10 description" id="t9"></textarea>
+        </div>
+        <div class="col-md-1">
           
-        </div>
-        <!-- 12 AM-->
-        <div class="row justify-content-start">
-          <div class="col-2 hour">
-            <p class="time-block">12 AM</p>
-          </div>
-          <div class="col-10 textarea" id="12">
-            <textarea class="col-10 description" id="t12"></textarea>
-          </div>
-          
-        </div>
-        <!-- 1 PM-->
-        <div class="row">
-          <div class="col-2 hour">
-            <p class="time-block">1 PM</p>
-          </div>
-          <div class="col-10 textarea" id="13">
-            <textarea class="col-10 description" id="t13"></textarea>
-          </div>
-          
-        </div>
-        <!-- 2 PM-->
-        <div class="row justify-content-start">
-          <div class="col-2 hour">
-            <p class="time-block">2 PM</p>
-          </div>
-          <div class="col-10 textarea" id="14">
-            <textarea class="col-10 description" id="t14"></textarea>
-          </div>
-          
-        </div>
-        <!-- 3 PM-->
-        <div class="row justify-content-start">
-          <div class="col-2 hour">
-            <p class="time-block">3 PM</p>
-          </div>
-          <div class="col-10 textarea" id="15">
-            <textarea class="col-10 description" id="t15"></textarea>
-          </div>
-          
-        </div>
-        <!-- 4 PM-->
-        <div class="row justify-content-start">
-          <div class="col-2 hour">
-            <p class="time-block">4 PM</p>
-          </div>
-          <div class="col-10 textarea" id="16">
-            <textarea class="col-10 description" id="t16"></textarea>
-          </div>
-          
-        </div>
-        <!-- 5 PM-->
-        <div class="row justify-content-start">
-          <div class="col-2 hour">
-            <p class="time-block">5 PM</p>
-          </div>
-          <div class="col-10 textarea" id="17">
-            <textarea class="col-10 description" id="t17"></textarea>
-          </div>
         </div>
       </div>
-      <div class="container col-3 style-me">
-        <h1 style="text-align: left;">To Do List</h1>
-        <button type="button" class="btn btn-default btn-lg"  id="todoBtn">Add ToDo Task</button>
-            
-        <div class="modal fade" id="planModal" role="dialog">
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-header" style="padding:35px 50px;">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4><span class="glyphicon glyphicon-tasks" style = "text-align: left;">To Do List</span></h4>
-              </div>
-              <div class="modal-body" style="padding:40px 50px;">
-                  <form role="form" id="todo-form">
-                    <div class="form-group">
-                        <label for="TodoTask"><span class="glyphicon glyphicon-pencil" style="text-align: left;">Task </span></label>
-                        <input type="text" class="form-control" name="TodoTask" id="TodoTask" placeholder="Enter Task">
-                    </div>
-                    <div class="form-group">
-                        <label for="date" style="text-align: left;"><span class="glyphicon glyphicon-calendar">Task Date</span></label>
-                        <input type="text" class="form-control" name = "TodoDate" id="TodoDate" automplete="off" placeholder="Enter Due Date">
-                    </div>
-                      <button type="submit" class="btn btn-success btn-block"><span class="glyphicon glyphicon-off"></span>Add Task</button>
-                  </form>
-              </div>
-              <div class="modal-footer">
-                <button type="submit" class="btn btn-danger btn-default pull-left" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
-              </div>
+      <!-- 10 AM-->
+      <div class="row justify-content-start" >
+        <div class="col-md-1 hour">
+          <p class="time-block">10 AM</p>
+        </div>
+        <div class="col-md-10 textarea" id="10">
+          <textarea class="col-10 description" id="t10"></textarea>
+        </div>
+        <div class="col-md-1">
+          
+        </div>
+      </div>
+      <!-- 11 AM-->
+      <div class="row justify-content-start">
+        <div class="col-md-1 hour">
+          <p class="time-block">11 AM</p>
+        </div>
+        <div class="col-md-10 textarea" id="11">
+          <textarea class="col-10 description" id="t11"></textarea>
+        </div>
+        <div class="col-md-1">
+          
+        </div>
+      </div>
+      <!-- 12 AM-->
+      <div class="row justify-content-start">
+        <div class="col-md-1 hour">
+          <p class="time-block">12 AM</p>
+        </div>
+        <div class="col-md-10 textarea" id="12">
+          <textarea class="col-10 description" id="t12"></textarea>
+        </div>
+        <div class="col-md-1">
+          
+        </div>
+      </div>
+      <!-- 1 PM-->
+      <div class="row">
+        <div class="col-md-1 hour">
+          <p class="time-block">1 PM</p>
+        </div>
+        <div class="col-md-10 textarea" id="13">
+          <textarea class="col-10 description" id="t13"></textarea>
+        </div>
+        <div class="col-md-1">
+          
+        </div>
+      </div>
+      <!-- 2 PM-->
+      <div class="row justify-content-start">
+        <div class="col-md-1 hour">
+          <p class="time-block">2 PM</p>
+        </div>
+        <div class="col-md-10 textarea" id="14">
+          <textarea class="col-10 description" id="t14"></textarea>
+        </div>
+        <div class="col-md-1">
+          
+        </div>
+      </div>
+      <!-- 3 PM-->
+      <div class="row justify-content-start">
+        <div class="col-md-1 hour">
+          <p class="time-block">3 PM</p>
+        </div>
+        <div class="col-md-10 textarea" id="15">
+          <textarea class="col-10 description" id="t15"></textarea>
+        </div>
+        <div class="col-md-1">
+          
+        </div>
+      </div>
+      <!-- 4 PM-->
+      <div class="row justify-content-start">
+        <div class="col-md-1 hour">
+          <p class="time-block">4 PM</p>
+        </div>
+        <div class="col-md-10 textarea" id="16">
+          <textarea class="col-10 description" id="t16"></textarea>
+        </div>
+        <div class="col-md-1">
+          
+        </div>
+      </div>
+      <!-- 5 PM-->
+      <div class="row justify-content-start">
+        <div class="col-md-1 hour">
+          <p class="time-block">5 PM</p>
+        </div>
+        <div class="col-md-10 textarea" id="17">
+          <textarea class="col-10 description" id="t17"></textarea>
+        </div>
+        <div class="col-md-1">
+          
+        </div>
+      </div>
+      
+    </div>
+
+    <br>
+     <!-- Footer -->
+  <footer class="bg-dark text-white py-5">
+    <div class="container-footer">
+      <div class="row">
+        <!-- Follow Us section -->
+        <div class="col-md-3 col-sm-12 mb-3 mb-md-0 text-left follow-sm">
+          <div class="row">
+            <h5 class="text-uppercase mb-3">Follow Us</h5>
+            <div class="d-flex">
+              <a href="https://en-gb.facebook.com/" class="text-white mr-3">
+                <i class="fab fa-facebook fa-2x"></i>
+              </a>
+              <a href="https://twitter.com/?lang=en" class="text-white mr-3">
+                <i class="fab fa-twitter fa-2x"></i>
+              </a>
+              <a href="https://www.instagram.com/" class="text-white mr-3">
+                <i class="fab fa-instagram fa-2x"></i>
+              </a>
+              <a href="https://www.snapchat.com/" class="text-white mr-3">
+                <i class="fab fa-snapchat fa-2x"></i>
+              </a>
+              <a href="https://www.youtube.com/" class="text-white mr-3">
+                <i class="fab fa-youtube fa-2x"></i>
+              </a>
+              <a href="https://www.linkedin.com/" class="text-white">
+                <i class="fab fa-linkedin fa-2x"></i>
+              </a>
             </div>
-            </div>  
-          </div>
-          <div>
-            <ul id="todo-list" ></ul>  
           </div>
         </div>
-        
+
+        <!-- Plan It section -->
+        <div class="col-md-1 col-sm-4 mb-3 mb-md-0 text-center plan">
+          <h5>Plan-IT</h5>
+          <i class="fas fa-clipboard-list fa-3x text-yellow"></i>
+        </div>
+
+        <!-- Newsletter section -->
+        <div class="col-md-4 col-sm-8 mb-3 mb-md-0 newss">
+          <div class="row">
+            <h5 class="text-uppercase news text-center">Subscribe to our newsletter</h5>
+            <form class="text-center">
+              <div class="input-group">
+                <input type="email" class="form-control" placeholder="Enter your email address">
+                <span class="input-group-append">
+                  <button class="btn btn-secondary" type="submit">Subscribe</button>
+                </span>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <!-- App Store section -->
+        <div class="col-md-2 mt-3 text-left appp"
+          style="background-color: white; padding: 5px 0px 0px 20px; border-radius: 10px;">
+          <div class="row">
+            <p style="color: black; display: flex; align-items: center; margin-bottom: 10px;">
+              <i class="fab fa-apple mr-3" style="color: black;"></i> Download on the
+            </p>
+            <h3 style="color: rgb(13, 12, 12);">App Store</h3>
+          </div>
+        </div>
+
       </div>
-  </main>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-  <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
-  <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-  <script src="./assets/JS/script.js"></script> <!-- My Script-->
+    </div>
 
-
-
-
-
-
-
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-    <script src="./assets/JS/script.js"></script> My Script -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/momentjs/2.14.1/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="./assets/JS/script.js"></script> <!-- My Script-->
   </body>
 </html>
