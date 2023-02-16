@@ -58,6 +58,9 @@ $(document).ready(function () {
 
     var environment = "P"; // Sets environment to Testing or Production
     var forceHour = 11; // for testing forces the time to what is contained in the variable
+
+    //This is for Stuart
+    
     // var planner_storage = []
     const day = moment().format('ddd');
     var WeekPlan ={Mon:[1,2,3],Tue:[4,5,6],Wed:[7,8,9],Thu:[10,11,12],Fri:[13,14,15],Sat:[],Sun:[]}; //Fictitious data
