@@ -19,6 +19,7 @@ textarea {
   color: black;
   border-radius: 0;
   border-bottom: 10px solid black;
+  padding: 0;
 }
 
 .description {
@@ -36,6 +37,13 @@ textarea {
   height: 49px;
   border-top: 1px solid white;
 } */
+<<<<<<< HEAD
+.style-row {
+  border-top: 1px solid white;
+  background-color: #06aed5;
+}
+=======
+>>>>>>> 935a80bcf0a1ffe9498a9c54e2c8e45d83fc8954
 
 .resetRow {
   white-space: pre-wrap;
@@ -85,10 +93,10 @@ textarea {
 
 .resetBtn {
   border-left: 1px solid black;
-  border-top-right-radius: 15px;
-  border-bottom-right-radius: 15px;
-  background-color: #d50606;
+  border-radius: 20px;
+  background-color: #418283;
   color: white;
+  box-shadow: 0 5px #999;
   margin: 20px 20px 20px 20px;
 }
 
@@ -98,20 +106,29 @@ textarea {
 }
 
 /* Added Save All Button CSS */
-
 .saveAllBtn {
   border-left: 1px solid black;
-  border-top-right-radius: 15px;
-  border-bottom-right-radius: 15px;
-  background-color: #d50606;
+  border-radius: 20px;
+  background-color: #418283;
+  box-shadow: 0 5px #999;
   color: white;
   margin: 20px 20px 20px 20px;
 }
 
 .saveAllBtn i:hover {
+  background-color: #418283;
   font-size: 20px;
   transition: all 0.3s ease-in-out;
 }
+<<<<<<< HEAD
+.saveAllBtn i:active {
+  background-color: #418283;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+
+
+=======
 
 <<<<<<< HEAD
 #todoBtn {
@@ -127,6 +144,7 @@ textarea {
   transition: all 0.3s ease-in-out;
 }
 
+>>>>>>> 935a80bcf0a1ffe9498a9c54e2c8e45d83fc8954
 .mondayBtn, .tuesdayBtn, .wednesdayBtn, .thursdayBtn, .fridayBtn {
 =======
 .mondayBtn,
@@ -136,9 +154,10 @@ textarea {
 .fridayBtn {
 >>>>>>> 87106fc3ab81ec12f7bb08120f78eeed4f85ff31
   border-left: 1px solid black;
-  border-top-right-radius: 15px;
-  border-bottom-right-radius: 15px;
-  background-color: #d50606;
+  border-radius: 20px;
+  width: 80px;
+  background-color: #418283;
+  box-shadow: 0 5px #999;
   color: white;
   margin: 20px 20px 20px 20px;
 }
